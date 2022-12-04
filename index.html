@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="nav container">
+            <!-- ////cart logo//// -->
+            <a href="#" class="logo">E-commerce</a>
+            <!-- ////cart icon//// -->
+            <i class='bx bxs-shopping-bag' id="cart-icon"></i>
+
+
+            <!-- ///////////cart///////////// -->
+            <div class="cart">
+                <h2 class="cart-title">Your Cart</h2>
+                <div class="cart-content">
+
+                </div>
+                <!-- total -->
+                <div class="total">
+                    <div class="total-title">Total</div>
+                    <div class="total-price">$0</div>
+                </div>
+                <!-- Buy button -->
+                <button type="button" class="btn-buy">Buy Now</button>
+                <!-- cart close -->
+                <i class='bx bx-x-circle' id="close-cart"></i>
+            </div>
+
+        </div>
+
+
+
+    </header>
+
+    <!-- //////////////////////shop////////////////// -->
+
+    <section class="shop container">
+        <h2 class="section-title">Shop Product</h2>
+        <div class="shop-content"></div> 
+    </section>
+
+    <!-- link to js -->
+
+
+    <script src="./js/index.js"></script>
+    <script>
+        const product = [
+            {
+                image: "./img/product.jpg",
+                Pro_name: "product1",
+                price: "$25"
+            },
+            {
+                image: "./img/product2.webp",
+                Pro_name: "product2",
+                price: "$30"
+            },
+            {
+                image: "./img/product3.webp",
+                Pro_name: "product3",
+                price: "$80"
+            },
+            {
+                image: "./img/product4.webp",
+                Pro_name: "product4",
+                price: "$20"
+            },
+            {
+                image: "./img/product.jpg",
+                Pro_name: "product5",
+                price: "$2"
+            },
+            {
+                image: "./img/product2.webp",
+                Pro_name: "product6",
+                price: "$35"
+            },
+            {
+                image: "./img/product3.webp",
+                Pro_name: "product7",
+                price: "$70"
+            },
+            {
+                image: "./img/product4.webp",
+                Pro_name: "product8",
+                price: "$40"
+            },
+        ]
+
+
+
+        const createNav = () => {
+            let nav = document.querySelector('.shop-content');
+            product.map(item => {
+                nav.innerHTML += `
+                        <div class="product-box">
+                            <img src=${item.image} alt="" class="product-img"/>
+                             <h2 class="product-title">${item.Pro_name}</h2>
+                             <span class="price">${item.price}</span>
+                             <button type="button" class="btn-cart add-cart">Add Cart</button>
+                         </div>
+                                `;
+            })
+
+        }
+
+        createNav();
+  
+    </script>
+</body>
+
+</html>

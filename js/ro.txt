@@ -1,0 +1,51 @@
+  <!-- <div class="product-box">
+    <img src="./img/product.jpg" alt="" class="product-img"/>
+    <h2 class="product-title">product1</h2>
+    <span class="price">$25</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product2.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product2</h2>
+    <span class="price">$100</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product3.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product3</h2>
+    <span class="price">$190</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product4.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product4</h2>
+    <span class="price">$200</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product.jpg" alt="" class="product-img"/>
+    <h2 class="product-title">product5</h2>
+    <span class="price">$50</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product2.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product6</h2>
+    <span class="price">$20</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product3.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product7</h2>
+    <span class="price">$19</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div>
+<div class="product-box">
+    <img src="./img/product4.webp" alt="" class="product-img"/>
+    <h2 class="product-title">product8</h2>
+    <span class="price">$80</span>
+    <i class='bx bxs-shopping-bag-alt add-cart'></i>
+</div> -->
+
+
+  <i class='bx bxs-shopping-bag-alt add-cart'></i>
