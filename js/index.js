@@ -1,143 +1,116 @@
-// cart 
+const products = [
+    {
+        dataid: 1,
+        image: "./img/product2.webp",
+        Pro_name: "product1",
+        price: 25,
+        quantity: 1,
+        discription: " HP Victus Gaming Latest AMD Ryzen 5 5600H "
+    },
+    {
+        dataid: 2,
+        image: "./img/product3.webp",
+        Pro_name: "product2",
+        price: 30,
+        discription: " HP Victus Gaming Latest AMD Ryzen 5 5600H "
+    },
+    {
+        dataid: 3,
+        image: "./img/product4.webp",
+        Pro_name: "product3",
+        price: 80,
+        discription: " HP Victus Gaming Latest AMD Ryzen 5 5600H "
+    },
+
+]
+
+const productlist = () => {
+    let product = document.querySelector('.shop-content');
+    products.map(item => {
+        product.innerHTML += `
+                <div class="product-box" dataid="${item.dataid}">
+                    <img src=${item.image} alt="" class="product-img"/>
+                     <h2 class="product-title">${item.Pro_name}</h2>
+                     <p class="description">${item.discription}</p>
+                     <span class="price">$${item.price}</span>
+                     <button type="button" class="btn-cart add-cart">Add To Cart</button>
+                 </div>
+                        `;
+    })
+
+}
+
+productlist();
+
+///////////////////////////// C A R T ///////////////////////////
 let cartIcon = document.querySelector("#cart-icon")
 let cart = document.querySelector(".cart")
 let closeCart = document.querySelector("#close-cart")
-//open cart
+////////////////////////////////// O P E N-C A R T ////////////////////////
 cartIcon.onclick = () => {
     cart.classList.add("active")
 }
 
-//close cart
+//////////////////////////////////// C L O S E-C A R T /////////////////////////////
 closeCart.onclick = () => {
     cart.classList.remove("active")
 }
-////////////////////////////////////cart//////////////////
+//////////////////////////////////// ADD TO CART ///////////////////////////////////////
 
-//cart working js
+const addcartbtn = document.querySelectorAll(".add-cart")
+console.log("addcartbtn", addcartbtn)
+addcartbtn.forEach((btn, i) => {
+    console.log("btn", btn)
+    btn.addEventListener('click', () => {
+        addcart(i)
+    })
+})
+function addcart(i) {
 
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
-} else {
-    ready();
-}
-
-////making function
-
-function ready() {
-    //remove item from cart
-    var removeCartButtons = document.getElementsByClassName('cart-remove')
-    console.log(removeCartButtons)
-    for (var i = 0; i < removeCartButtons.length; i++) {
-        var button = removeCartButtons[i]
-        button.addEventListener('click', removeCartItem)
+    ///////to insert item by there id///////////
+    let itemToInsert = products.find(item => item.dataid === i + 1);
+    console.log("itemToInsert", itemToInsert);
+    ///////////////it push the item in empty array///////////////////
+    let a = [];
+    // Parse the serialized data back into an aray of objects
+    a = JSON.parse(localStorage.getItem('cartItems')) || [];
+    console.log("a", a)
+    //
+    let duplicate = a.find(item => item.dataid === i+1);
+    console.log("duplicate", duplicate);
+    if (duplicate === undefined) {
+        a.push(itemToInsert);
     }
-    ///quantity change
-    var quantityInputs = document.getElementsByClassName('cart-quantity')
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
-        input.addEventListener('change', quantityChanged)
-    }
-    //add to cart
-    var addCart = document.getElementsByClassName('add-cart')
-    for (var i = 0; i < addCart.length; i++) {
-        var button = addCart[i]
-        button.addEventListener('click', addCartClicked);
-    }
-// buy button work
-document
-.getElementsByClassName('btn-buy')[0]
-.addEventListener('click', buyButtonClicked);
-
-}
-//buy button 
-
-function  buyButtonClicked(){
-    alert('your order is placed')
-    var cartContent = document.getElementsByClassName('cart-content')[0]
-    while (cartContent.hasChildNodes()){
-        cartContent.removeChild(cartContent.firstChild);
-    }
-    updatetotal();
-}
-
-
-
-
-
-///quantity change
-function quantityChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-    }
-    updatetotal();
-}
-
-
-/////remove item from cart
-function removeCartItem(event) {
-    var buttonClicked = event.target
-    buttonClicked.parentElement.remove()
-    updatetotal();
-}
-
-//add to cart
-function addCartClicked(event) {
-    var button = event.target
-    var shopProducts = button.parentElement
-    var title = shopProducts.getElementsByClassName('product-title')[0].innerText
-    var price = shopProducts.getElementsByClassName('price')[0].innerText
-    var productImg = shopProducts.getElementsByClassName('product-img')[0].src
-    addProductToCart(title, price, productImg);
-    updatetotal();
-}
-function addProductToCart(title, price, productImg) {
-    var cartShopBox = document.createElement('div')
-    cartShopBox.classList.add('cart-box')
-    var cartItems = document.getElementsByClassName('cart-content')[0]
-    var cartItemsNames = cartItems.getElementsByClassName('cart-product-title')
-    for (var i = 0; i < cartItemsNames.length; i++) {
-        if (cartItemsNames[i].innerText == title){
-        alert('you have already add this item to cart')
-        return;
-    }
-
-}
-var cartBoxContent = `
-                       <img src="${productImg}" alt="" class="cart-img">
-                     <div class="detail-box">
-                <div class="cart-product-title">${title}</div>
-                <div class="cart-price">${price}</div>
-                <input type="number" value="1" class="cart-quantity">
-            </div>
-            <i class='bx bxs-trash-alt cart-remove'></i>`;
-cartShopBox.innerHTML = cartBoxContent;
-cartItems.append(cartShopBox)
-cartShopBox
-.getElementsByClassName('cart-remove')[0]
-.addEventListener('click', removeCartItem);
-cartShopBox
-.getElementsByClassName('cart-quantity')[0]
-.addEventListener('change', quantityChanged);
-
-}
-
-//update total
-function updatetotal() {
-    var cartContent = document.getElementsByClassName('cart-content')[0]
-    var cartBoxes = cartContent.getElementsByClassName('cart-box')
-    var total = 0;
-    for (var i = 0; i < cartBoxes.length; i++) {
-        var cartBox = cartBoxes[i]
-        var priceElement = cartBox.getElementsByClassName('cart-price')[0]
-        var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
-        var price = parseFloat(priceElement.innerText.replace('$', ""))
-        var quantity = quantityElement.value
-        total = total + (price * quantity);
-    }
-        //if price contain some cent value
-        total = Math.round(total * 100) / 100;
-
-        document.getElementsByClassName('total-price')[0].innerText = '$' + total;
+    // Push the new data (whether it be an object or anything else) onto the array
+    // a.push(itemToInsert);
+    // Alert the array value
+    alert("your Item aready exist, If you want to increase than go to cart");  // Should be something like [Object array]
+    // Re-serialize the array back into a string and store it in localStorage
+    localStorage.setItem('cartItems', JSON.stringify(a));
     
+
+
+    additemincart();
 }
+
+
+function additemincart() {
+    let cartitem = JSON.parse(localStorage.getItem('cartItems'));
+    console.log('cartitem', cartitem)
+    let itemdata = document.querySelector(".cart-content")
+    console.log("product", itemdata)
+    cartitem.map(item => {
+        itemdata.innerHTML += `
+                <div class="cart-box" dataid="${item.dataid}">
+                    <img src=${item.image} alt="" class="cart-img"/>
+                     <h2 class="cart-product-title">${item.Pro_name}</h2>
+                     <i class='bx bxs-message-alt-x cart-remove'></i>
+                     <span class="cart-price">$${item.price}</span>
+                     <div id="cart-quantity"><button class="value-button increase-btn" id="decrease" onclick="decreaseValue()" value="Increase Value">-</button><input type="number" id="number" value="0" /><button class="value-button decrease-btn" id="increase" onclick="increaseValue()" value="Increase Value">+</button></div>
+                 </div>
+                
+                        `;
+    })
+
+}
+additemincart();
